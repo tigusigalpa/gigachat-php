@@ -1,8 +1,6 @@
 # 🚀 GigaChat PHP SDK
 
-[Русская версия](README.md)
-
-![GigaChat PHP SDK](https://github.com/user-attachments/assets/bcf42e4c-d410-47b3-844e-c298f68b0c52)
+![GigaChat PHP SDK](https://github.com/user-attachments/assets/d44a0f88-f3d6-4c8d-9127-5d858d726cd6)
 
 A comprehensive PHP SDK for working with Sber GigaChat API with Laravel integration. The package provides a convenient
 interface for integrating with Sber GigaChat AI models, including support for streaming and regular requests.
@@ -10,6 +8,8 @@ interface for integrating with Sber GigaChat AI models, including support for st
 [![Latest Version](https://img.shields.io/packagist/v/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
 [![PHP Version](https://img.shields.io/packagist/php-v/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
 [![License](https://img.shields.io/packagist/l/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
+
+**🌐 Language:** English | [Русский](README.md)
 
 ## 🚀 Features
 
@@ -298,7 +298,8 @@ $response = GigaChat::chat($messages, $options);
 
 ## 🎨 Image Generation
 
-GigaChat supports image generation using the built-in text2image function. To create images, use the verb "нарисуй" (draw) in the prompt and the `function_call: auto` parameter.
+GigaChat supports image generation using the built-in text2image function. To create images, use the verb "нарисуй" (
+draw) in the prompt and the `function_call: auto` parameter.
 
 ### Basic Usage
 
@@ -468,14 +469,14 @@ echo "Gallery saved to gallery.html";
 
 ### Available Image Methods
 
-| Method | Description | Returns |
-|--------|-------------|---------|
-| `generateImage($prompt, $options)` | Generates image and returns API response | `array` - response with image ID |
-| `downloadImage($fileId)` | Downloads image by ID | `string` - base64-encoded image |
-| `createImage($prompt, $options)` | Generates and immediately downloads image | `array` - contains content, file_id, response |
-| `drawImage($description, $options)` | **Laravel helper** - quick generation (adds "Нарисуй") | `array` - same as createImage |
-| `drawImageInStyle($description, $style, $options)` | **Laravel helper** - generate with artist style | `array` - same as createImage |
-| `extractImageId($content)` | **Laravel helper** - extracts image ID from HTML | `string\|null` - file ID or null |
+| Method                                             | Description                                            | Returns                                       |
+|----------------------------------------------------|--------------------------------------------------------|-----------------------------------------------|
+| `generateImage($prompt, $options)`                 | Generates image and returns API response               | `array` - response with image ID              |
+| `downloadImage($fileId)`                           | Downloads image by ID                                  | `string` - base64-encoded image               |
+| `createImage($prompt, $options)`                   | Generates and immediately downloads image              | `array` - contains content, file_id, response |
+| `drawImage($description, $options)`                | **Laravel helper** - quick generation (adds "Нарисуй") | `array` - same as createImage                 |
+| `drawImageInStyle($description, $style, $options)` | **Laravel helper** - generate with artist style        | `array` - same as createImage                 |
+| `extractImageId($content)`                         | **Laravel helper** - extracts image ID from HTML       | `string\|null` - file ID or null              |
 
 ### Error Handling for Image Generation
 
@@ -561,7 +562,9 @@ $client->generateImage("Нарисуй робота", [
 ]);
 ```
 
-> **Important**: For image generation, the prompt must contain the verb "нарисуй" (draw) or similar drawing commands. The API automatically determines the need to call the text2image function when the `function_call: auto` parameter is present.
+> **Important**: For image generation, the prompt must contain the verb "нарисуй" (draw) or similar drawing commands.
+> The API automatically determines the need to call the text2image function when the `function_call: auto` parameter is
+> present.
 
 ## ⚠️ Error handling
 
@@ -592,13 +595,13 @@ try {
 
 #### 🔐 Authentication Errors (400-401)
 
-| Code | HTTP | Description | Solution |
-|------|------|-------------|----------|
-| 1 | 400 | `scope data format invalid` | Check scope field format |
-| 4 | 401 | `Can't decode 'Authorization' header` | Check authorization key correctness |
-| 5 | 400 | `scope is empty` | Specify scope: `GIGACHAT_API_PERS`, `GIGACHAT_API_B2B` or `GIGACHAT_API_CORP` |
-| 6 | 401 | `credentials doesn't match db data` | Reissue authorization key in personal account |
-| 7 | 401 | `scope from db not fully includes consumed scope` | Specify correct API version in scope |
+| Code | HTTP | Description                                       | Solution                                                                      |
+|------|------|---------------------------------------------------|-------------------------------------------------------------------------------|
+| 1    | 400  | `scope data format invalid`                       | Check scope field format                                                      |
+| 4    | 401  | `Can't decode 'Authorization' header`             | Check authorization key correctness                                           |
+| 5    | 400  | `scope is empty`                                  | Specify scope: `GIGACHAT_API_PERS`, `GIGACHAT_API_B2B` or `GIGACHAT_API_CORP` |
+| 6    | 401  | `credentials doesn't match db data`               | Reissue authorization key in personal account                                 |
+| 7    | 401  | `scope from db not fully includes consumed scope` | Specify correct API version in scope                                          |
 
 ```php
 // Example of handling authentication errors
@@ -620,10 +623,10 @@ try {
 
 #### 💳 Limits and Access Errors (402-403)
 
-| HTTP | Description | Cause | Solution |
-|------|-------------|-------|----------|
-| 402 | `Payment Required` | Model tokens exhausted | Check token limit in personal account |
-| 403 | `Permission denied` | No access to method | Check tariff plan (e.g., GET /balance unavailable for pay-as-you-go) |
+| HTTP | Description         | Cause                  | Solution                                                             |
+|------|---------------------|------------------------|----------------------------------------------------------------------|
+| 402  | `Payment Required`  | Model tokens exhausted | Check token limit in personal account                                |
+| 403  | `Permission denied` | No access to method    | Check tariff plan (e.g., GET /balance unavailable for pay-as-you-go) |
 
 ```php
 try {
@@ -644,9 +647,9 @@ try {
 
 #### 📊 Data Size Errors (413)
 
-| HTTP | Description | Cause | Solution |
-|------|-------------|-------|----------|
-| 413 | `Payload too large` | Input data size exceeded | Reduce prompt or file size |
+| HTTP | Description         | Cause                    | Solution                   |
+|------|---------------------|--------------------------|----------------------------|
+| 413  | `Payload too large` | Input data size exceeded | Reduce prompt or file size |
 
 ```php
 try {
@@ -661,11 +664,11 @@ try {
 
 #### ⚙️ Parameter Errors (422)
 
-| HTTP | Description | Cause | Solution |
-|------|-------------|-------|----------|
-| 422 | `Requested model does not support functions` | Model doesn't support functions | Use different model or disable functions |
-| 422 | `system message must be the first message` | Wrong message order | System message must be first |
-| 422 | `Unprocessable Entity` | File exceeds context size | Split or shorten the file |
+| HTTP | Description                                  | Cause                           | Solution                                 |
+|------|----------------------------------------------|---------------------------------|------------------------------------------|
+| 422  | `Requested model does not support functions` | Model doesn't support functions | Use different model or disable functions |
+| 422  | `system message must be the first message`   | Wrong message order             | System message must be first             |
+| 422  | `Unprocessable Entity`                       | File exceeds context size       | Split or shorten the file                |
 
 ```php
 try {
@@ -689,9 +692,9 @@ try {
 
 #### 🚦 Request Limit Errors (429)
 
-| HTTP | Description | Cause | Solution |
-|------|-------------|-------|----------|
-| 429 | `Too Many Requests` | Concurrent request limit exceeded | Reduce request frequency, add delays |
+| HTTP | Description         | Cause                             | Solution                             |
+|------|---------------------|-----------------------------------|--------------------------------------|
+| 429  | `Too Many Requests` | Concurrent request limit exceeded | Reduce request frequency, add delays |
 
 ```php
 try {
@@ -709,9 +712,9 @@ try {
 
 #### 🔧 Server Errors (500)
 
-| HTTP | Description | Cause | Solution |
-|------|-------------|-------|----------|
-| 500 | `Internal Server Error` | GigaChat service error | Contact support |
+| HTTP | Description             | Cause                  | Solution        |
+|------|-------------------------|------------------------|-----------------|
+| 500  | `Internal Server Error` | GigaChat service error | Contact support |
 
 ```php
 try {
@@ -807,7 +810,8 @@ try {
 }
 ```
 
-> 📖 **More about errors**: [Official GigaChat API Documentation](https://developers.sber.ru/docs/ru/gigachat/api/errors-description)
+> 📖 **More about errors
+**: [Official GigaChat API Documentation](https://developers.sber.ru/docs/ru/gigachat/api/errors-description)
 
 ## 🛠️ Artisan commands
 
