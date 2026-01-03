@@ -11,6 +11,8 @@
 
 **🌐 Язык:** Русский | [English](README-en.md)
 
+**📦 Другие версии:** [Golang SDK](https://pkg.go.dev/github.com/tigusigalpa/gigachat-go)
+
 ## 🚀 Возможности
 
 - 🔌 **Простая интеграция** с GigaChat API

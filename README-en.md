@@ -11,6 +11,8 @@ interface for integrating with Sber GigaChat AI models, including support for st
 
 **🌐 Language:** English | [Русский](README.md)
 
+**📦 Other versions:** [Golang SDK](https://pkg.go.dev/github.com/tigusigalpa/gigachat-go)
+
 ## 🚀 Features
 
 - 🔌 **Easy integration** with GigaChat API
