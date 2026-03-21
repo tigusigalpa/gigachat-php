@@ -1,91 +1,85 @@
-# 🚀 GigaChat PHP SDK
+# GigaChat PHP SDK
 
-![GigaChat PHP SDK](https://github.com/user-attachments/assets/d44a0f88-f3d6-4c8d-9127-5d858d726cd6)
+![GigaChat PHP SDK](https://i.postimg.cc/66jnmS1y/520455254_d44a0f88_f3d6_4c8d_9127_5d858d726cd6.png)
 
-Полнофункциональный PHP SDK для работы с Sber GigaChat API с поддержкой Laravel. Пакет предоставляет удобный интерфейс
-для интеграции с AI моделями Sber GigaChat, включая поддержку streaming и обычных запросов.
+PHP SDK для Sber GigaChat API с поддержкой Laravel. Streaming и обычные запросы.
 
 [![Latest Version](https://img.shields.io/packagist/v/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
 [![PHP Version](https://img.shields.io/packagist/php-v/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
 [![License](https://img.shields.io/packagist/l/tigusigalpa/gigachat-php.svg?style=flat-square)](https://packagist.org/packages/tigusigalpa/gigachat-php)
 
-**🌐 Язык:** Русский | [English](README-en.md)
+**Язык:** Русский | [English](README-en.md)
 
-**📦 Другие версии:** [Golang SDK](https://pkg.go.dev/github.com/tigusigalpa/gigachat-go)
+**Другие версии:** [Golang SDK](https://pkg.go.dev/github.com/tigusigalpa/gigachat-go)
 
-## 🚀 Возможности
+## Возможности
 
-- 🔌 **Простая интеграция** с GigaChat API
-- 🔐 **Автоматическое управление** OAuth и токенами доступа
-- 🎯 **Поддержка всех моделей** GigaChat (GigaChat, GigaChat-Pro, GigaChat-Max)
-- 🛠 **Полная интеграция с Laravel** (8-12, Service Provider, Facades, конфигурация)
-- 📝 **Поддержка диалогов** и одиночных запросов
-- ⚡ **Streaming поддержка** для реального времени
-- 🎨 **Генерация изображений** с помощью text2image функции
-- 🖼️ **Автоматическое скачивание** и обработка сгенерированных изображений
-- 🎭 **Стилизация изображений** через системные промпты
-- 🔧 **Helper методы** для упрощения работы
-- 🔒 **Rate Limiting** и middleware
-- 🧪 **Artisan команды** для тестирования
-- 📚 **Подробная документация** и примеры
+- Интеграция с GigaChat API
+- Управление OAuth-токенами (автообновление)
+- Все модели GigaChat (GigaChat, GigaChat-Pro, GigaChat-Max)
+- Laravel 8-12 (Service Provider, Facades)
+- Диалоги и одиночные запросы
+- Streaming-ответы
+- Генерация изображений через text2image
+- Скачивание и обработка изображений
+- Стилизация через системные промпты
+- Helper-методы
+- Rate limiting middleware
+- Artisan-команды
 
-## 📦 Установка
+## Установка
 
-### Установка из Packagist (рекомендуется)
+### Из Packagist
 
-Установите пакет через Composer:
+Через Composer:
 
 ```bash
 composer require tigusigalpa/gigachat-php
 ```
 
-### Для Laravel
+### Laravel
 
-Пакет автоматически регистрируется в Laravel благодаря автодискавери. Опубликуйте конфигурационный файл:
+Пакет регистрируется автоматически. Опубликуйте конфиг:
 
 ```bash
 php artisan vendor:publish --tag=gigachat-config
 ```
 
-## ⚙️ Настройка
+## Настройка
 
-### 1. Получение авторизационных данных
+### 1. Получение ключей
 
-Для работы с GigaChat API необходимо получить авторизационные данные:
-
-1. Зарегистрируйтесь
-   в [личном кабинете Sber AI](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
-2. Создайте проект и получите **Client ID** и **Client Secret**
+1. Зарегистрируйтесь в [Sber AI](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
+2. Создайте проект, получите **Client ID** и **Client Secret**
 3. Сгенерируйте **Authorization Key** (Base64 от "Client ID:Client Secret")
 
-> 💡 **Подробная инструкция
-**: [Создание проекта и получение ключей](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
+См.: [Создание проекта и получение ключей](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
 
-### 2. Настройка окружения
+### 2. Окружение
 
-Добавьте в ваш `.env` файл:
+Добавьте в `.env`:
 
 ```env
-# Способ 1: Используя готовый Authorization Key
+# Вариант 1: Готовый Authorization Key
 GIGACHAT_AUTH_KEY=your_base64_encoded_auth_key
 
-# Способ 2: Используя Client ID и Client Secret (автоматически сгенерирует auth_key)
+# Вариант 2: Client ID + Secret (auth_key генерируется автоматически)
 GIGACHAT_CLIENT_ID=your_client_id
 GIGACHAT_CLIENT_SECRET=your_client_secret
 
-# Дополнительные настройки
+# Настройки
 GIGACHAT_SCOPE=GIGACHAT_API_PERS
 GIGACHAT_DEFAULT_MODEL=GigaChat
 GIGACHAT_TEMPERATURE=0.7
 GIGACHAT_MAX_TOKENS=1000
 
-# Отключение проверки SSL (для решения проблем с сертификатами)
+# Отключить проверку SSL (при проблемах с сертификатами)
 GIGACHAT_CERT_PATH=false
 ```
 
-## 💡 Использование
+## Использование
 
-### Базовое использование (без Laravel)
+### Без Laravel
 
 ```php
 <?php
@@ -93,14 +87,14 @@ GIGACHAT_CERT_PATH=false
 use Tigusigalpa\GigaChat\Auth\TokenManager;
 use Tigusigalpa\GigaChat\GigaChatClient;
 
-// Создание токен-менеджера
+// Токен-менеджер
 $authKey = base64_encode('your_client_id:your_client_secret');
 $tokenManager = new TokenManager($authKey);
 
-// Создание клиента
+// Клиент
 $client = new GigaChatClient($tokenManager);
 
-// Получение списка доступных моделей
+// Доступные модели
 $models = $client->models();
 print_r($models);
 
@@ -113,9 +107,9 @@ $response = $client->chat($messages);
 echo $response['choices'][0]['message']['content'];
 ```
 
-### Использование с Laravel
+### С Laravel
 
-После публикации конфигурации используйте Facade:
+Используйте Facade:
 
 ```php
 <?php
@@ -123,14 +117,14 @@ echo $response['choices'][0]['message']['content'];
 use Tigusigalpa\GigaChat\Laravel\GigaChat;
 use Tigusigalpa\GigaChat\Models\GigaChatModels;
 
-// Простой вопрос-ответ
+// Вопрос-ответ
 $answer = GigaChat::ask('Расскажи анекдот');
 echo $answer;
 
-// Получение списка моделей
+// Список моделей
 $models = GigaChat::models();
 
-// Отправка сообщения с параметрами
+// С параметрами
 $response = GigaChat::chat([
     ['role' => 'user', 'content' => 'Объясни квантовую физику']
 ], [
@@ -142,7 +136,7 @@ $response = GigaChat::chat([
 echo $response['choices'][0]['message']['content'];
 ```
 
-### Работа с диалогами
+### Диалоги
 
 ```php
 <?php
@@ -150,7 +144,7 @@ echo $response['choices'][0]['message']['content'];
 use Tigusigalpa\GigaChat\Laravel\GigaChat;
 use Tigusigalpa\GigaChat\Laravel\GigaChatHelper;
 
-// Создание диалога с системным промптом
+// С системным промптом
 $conversation = GigaChatHelper::conversation(
     'Ты полезный помощник программиста',
     'Как создать REST API в Laravel?'
@@ -163,7 +157,7 @@ echo GigaChatHelper::extractContent($response);
 $conversation = GigaChat::continueChat($conversation, 'А как добавить аутентификацию?');
 ```
 
-### Streaming запросы
+### Streaming
 
 ```php
 <?php
@@ -174,7 +168,7 @@ $messages = [
     ['role' => 'user', 'content' => 'Напиши длинную историю о космосе']
 ];
 
-// Способ 1: С callback функцией
+// Callback
 GigaChat::chatStream($messages, [], function($event, $error) {
     if ($error) {
         echo "Ошибка: " . $error;
@@ -191,7 +185,7 @@ GigaChat::chatStream($messages, [], function($event, $error) {
     }
 });
 
-// Способ 2: С генератором
+// Генератор
 $stream = GigaChat::chatStream($messages);
 foreach ($stream as $event) {
     if (isset($event['choices'][0]['delta']['content'])) {
@@ -200,7 +194,7 @@ foreach ($stream as $event) {
 }
 ```
 
-### Использование в моделях Eloquent
+### Eloquent Trait
 
 ```php
 <?php
@@ -216,7 +210,6 @@ class Article extends Model
 
     protected $fillable = ['title', 'content', 'category'];
 
-    // Генерация резюме статьи
     public function generateSummary(): string
     {
         return $this->summarize('content');
@@ -239,12 +232,11 @@ class Article extends Model
 }
 ```
 
-## 🤖 Доступные модели
+## Модели
 
-GigaChat поддерживает несколько моделей для различных задач. Актуальный список моделей доступен
-в [официальной документации](https://developers.sber.ru/docs/ru/gigachat/models).
+Актуальный список: [официальная документация](https://developers.sber.ru/docs/ru/gigachat/models)
 
-### Модели для генерации текста
+### Генерация текста
 
 | Модель             | Описание                                       | Использование                     |
 |--------------------|------------------------------------------------|-----------------------------------|
@@ -252,37 +244,32 @@ GigaChat поддерживает несколько моделей для ра�
 | **GigaChat-2-Pro** | Продвинутая модель с улучшенными возможностями | Сложные задачи, креативное письмо |
 | **GigaChat-2-Max** | Максимальная модель для самых сложных задач    | Профессиональные задачи, анализ   |
 
-### Модели для эмбеддингов
+### Эмбеддинги
 
 | Модель              | Описание                                    | Использование                      |
 |---------------------|---------------------------------------------|------------------------------------|
 | **Embeddings**      | Базовая модель для векторного представления | Поиск по смыслу, кластеризация     |
 | **EmbeddingsGigaR** | Улучшенная модель для создания эмбеддингов  | Точный поиск, семантический анализ |
 
-### Использование констант моделей
+### Константы моделей
 
 ```php
 use Tigusigalpa\GigaChat\Models\GigaChatModels;
 use Tigusigalpa\GigaChat\Laravel\GigaChat;
 
-// Использование констант для генерации
 $response = GigaChat::chat($messages, [
     'model' => GigaChatModels::GIGACHAT_2_PRO
 ]);
 
-// Получение списка доступных моделей
 $generationModels = GigaChatModels::getGenerationModels();
 $embeddingModels = GigaChatModels::getEmbeddingModels();
 
-// Проверка валидности модели
 if (GigaChatModels::isValidGenerationModel('GigaChat-2')) {
-    // Модель валидна для генерации
+    // валидна
 }
 ```
 
-## 🔧 Параметры генерации
-
-Доступные параметры для настройки генерации:
+## Параметры генерации
 
 ```php
 use Tigusigalpa\GigaChat\Models\GigaChatModels;
@@ -297,14 +284,12 @@ $options = [
 ];
 
 $response = GigaChat::chat($messages, $options);
-```
 
-## 🎨 Генерация изображений
+## Генерация изображений
 
-GigaChat поддерживает генерацию изображений с помощью встроенной функции text2image. Для создания изображений
-используйте глагол "нарисуй" в промпте и параметр `function_call: auto`.
+Встроенная функция text2image. Используйте "нарисуй" в промпте с `function_call: auto`.
 
-### Базовое использование
+### Базовое
 
 ```php
 <?php
@@ -315,173 +300,73 @@ use Tigusigalpa\GigaChat\GigaChatClient;
 $tokenManager = new TokenManager($authKey);
 $client = new GigaChatClient($tokenManager);
 
-// Простая генерация изображения
 $response = $client->generateImage("Нарисуй красивый закат над морем");
 
-// Извлекаем ID изображения из ответа
+// Извлечь ID изображения
 $content = $response['choices'][0]['message']['content'];
-// Ответ содержит: <img src="file-id" fuse="true"/>
-
-// Скачиваем изображение
-if (preg_match('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $content, $matches)) {
+if (preg_match('/<img[^>]+src=["']([^"']+)["'][^>]*>/i', $content, $matches)) {
     $fileId = $matches[1];
     $imageData = $client->downloadImage($fileId);
-    
-    // Сохраняем файл
     file_put_contents('sunset.jpg', base64_decode($imageData));
 }
-```
 
-### Генерация с системным промптом (стилизация)
+### Стилизация
 
 ```php
-// Генерация в стиле конкретного художника
 $response = $client->generateImage("Нарисуй розового кота", [
     'system_message' => 'Ты — Василий Кандинский'
 ]);
 
-// Генерация в определенном стиле
 $response = $client->generateImage("Нарисуй космический корабль", [
     'system_message' => 'Ты — художник-концептуалист научной фантастики',
     'temperature' => 0.8
 ]);
-```
 
-### Упрощенный метод createImage
+### createImage
 
-Для удобства доступен метод `createImage`, который генерирует и сразу скачивает изображение:
+Генерирует и скачивает в одном вызове:
 
 ```php
-// Генерация и скачивание в одном вызове
 $result = $client->createImage("Нарисуй футуристический город", [
     'system_message' => 'Ты — архитектор будущего'
 ]);
 
-// Результат содержит:
-// - content: base64-кодированное изображение
-// - file_id: идентификатор файла
-// - response: полный ответ API
-
+// $result: content (base64), file_id, response
 file_put_contents('city.jpg', base64_decode($result['content']));
-echo "Изображение сохранено с ID: " . $result['file_id'];
-```
 
-### Использование в Laravel
-
-```php
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Tigusigalpa\GigaChat\Laravel\GigaChat;
-
-class ImageController extends Controller
-{
-    public function generateImage(Request $request)
-    {
-        $request->validate([
-            'prompt' => 'required|string|max:500',
-            'style' => 'nullable|string|max:200'
-        ]);
-
-        try {
-            $options = [];
-            if ($request->has('style')) {
-                $options['system_message'] = $request->input('style');
-            }
-
-            // Используем фасад Laravel
-            $result = GigaChat::createImage(
-                "Нарисуй " . $request->input('prompt'),
-                $options
-            );
-
-            // Сохраняем в storage
-            $filename = 'images/' . $result['file_id'] . '.jpg';
-            Storage::put($filename, base64_decode($result['content']));
-
-            return response()->json([
-                'success' => true,
-                'file_id' => $result['file_id'],
-                'url' => Storage::url($filename)
-            ]);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'error' => $e->getMessage()
-            ], 500);
-        }
-    }
-}
-```
-
-### Laravel Helper методы
-
-Для удобства работы в Laravel доступны специальные helper методы:
+### Laravel
 
 ```php
 use Tigusigalpa\GigaChat\Laravel\GigaChat;
 
-// Быстрая генерация изображения (автоматически добавляет "Нарисуй")
+// drawImage добавляет "Нарисуй" автоматически
 $result = GigaChat::drawImage("красивый пейзаж");
-// Эквивалентно: GigaChat::createImage("Нарисуй красивый пейзаж")
 
-// Вывод изображения в HTML для просмотра в браузере
-echo '<img src="data:image/jpeg;base64,' . $result['content'] . '" alt="Красивый пейзаж" style="max-width: 500px;">';
-
-// Генерация в стиле конкретного художника
+// Со стилем художника
 $result = GigaChat::drawImageInStyle("портрет кота", "Леонардо да Винчи");
-// Эквивалентно: GigaChat::createImage("Нарисуй портрет кота", ['system_message' => 'Ты — Леонардо да Винчи'])
 
-// Вывод стилизованного изображения в HTML
-echo '<img src="data:image/jpeg;base64,' . $result['content'] . '" alt="Портрет кота в стиле да Винчи" style="max-width: 400px; border: 2px solid gold;">';
-
-// Извлечение ID изображения из ответа API
+// Извлечь ID изображения
 $response = GigaChat::generateImage("Нарисуй дракона");
-$content = $response['choices'][0]['message']['content'];
-$imageId = GigaChat::extractImageId($content);
-
+$imageId = GigaChat::extractImageId($response['choices'][0]['message']['content']);
 if ($imageId) {
     $imageData = GigaChat::downloadImage($imageId);
     file_put_contents("dragon.jpg", base64_decode($imageData));
 }
 
-// Создание HTML-страницы с галереей изображений
-$images = [
-    GigaChat::drawImage("закат над океаном"),
-    GigaChat::drawImageInStyle("горный пейзаж", "Иван Шишкин"),
-    GigaChat::drawImageInStyle("абстрактная композиция", "Василий Кандинский")
-];
-
-$html = '<html><head><title>Галерея GigaChat</title></head><body>';
-$html .= '<h1>Изображения, созданные GigaChat</h1>';
-foreach ($images as $index => $image) {
-    $html .= '<div style="margin: 20px; text-align: center;">';
-    $html .= '<img src="data:image/jpeg;base64,' . $image['content'] . '" ';
-    $html .= 'alt="Изображение ' . ($index + 1) . '" style="max-width: 300px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">';
-    $html .= '<p>ID: ' . $image['file_id'] . '</p>';
-    $html .= '</div>';
-}
-$html .= '</body></html>';
-
-file_put_contents('gallery.html', $html);
-echo "Галерея сохранена в gallery.html";
 ```
 
-### Доступные методы для работы с изображениями
+### Методы изображений
 
-| Метод                                              | Описание                                                     | Возвращает                                    |
-|----------------------------------------------------|--------------------------------------------------------------|-----------------------------------------------|
-| `generateImage($prompt, $options)`                 | Генерирует изображение и возвращает ответ API                | `array` - ответ с ID изображения              |
-| `downloadImage($fileId)`                           | Скачивает изображение по ID                                  | `string` - base64-кодированное изображение    |
-| `createImage($prompt, $options)`                   | Генерирует и сразу скачивает изображение                     | `array` - содержит content, file_id, response |
-| `drawImage($description, $options)`                | **Laravel helper** - быстрая генерация (добавляет "Нарисуй") | `array` - аналогично createImage              |
-| `drawImageInStyle($description, $style, $options)` | **Laravel helper** - генерация в стиле художника             | `array` - аналогично createImage              |
-| `extractImageId($content)`                         | **Laravel helper** - извлекает ID изображения из HTML        | `string\|null` - ID файла или null            |
+| Метод | Описание | Возвращает |
+|--------|-------------|--------|
+| `generateImage($prompt, $options)` | Генерация, ответ API | `array` |
+| `downloadImage($fileId)` | Скачать по ID | `string` (base64) |
+| `createImage($prompt, $options)` | Генерация + скачивание | `array` |
+| `drawImage($description, $options)` | Laravel: добавляет "Нарисуй" | `array` |
+| `drawImageInStyle($description, $style, $options)` | Laravel: со стилем художника | `array` |
+| `extractImageId($content)` | Извлечь ID из HTML | `string\|null` |
 
-### Обработка ошибок при генерации изображений
+### Ошибки изображений
 
 ```php
 use Tigusigalpa\GigaChat\Exceptions\GigaChatException;
@@ -490,38 +375,17 @@ use Tigusigalpa\GigaChat\Exceptions\ValidationException;
 try {
     $result = $client->createImage("Нарисуй дракона");
 } catch (ValidationException $e) {
-    // Ошибки валидации (пустой промпт и т.д.)
     echo "Ошибка валидации: " . $e->getMessage();
 } catch (GigaChatException $e) {
-    // Ошибки API или извлечения ID изображения
     echo "Ошибка генерации: " . $e->getMessage();
 }
 ```
 
-### Примеры промптов для генерации
+**Важно**: Промпт должен содержать "нарисуй". API вызывает text2image при `function_call: auto`.
 
-```php
-// Хорошие промпты (содержат "нарисуй")
-$client->generateImage("Нарисуй закат в горах");
-$client->generateImage("Нарисуй портрет кота в стиле ренессанса");
-$client->generateImage("Нарисуй абстрактную композицию");
+## Обработка ошибок
 
-// Стилизация через system_message
-$client->generateImage("Нарисуй цветы", [
-    'system_message' => 'Ты — Клод Моне, рисуешь в стиле импрессионизма'
-]);
-
-$client->generateImage("Нарисуй робота", [
-    'system_message' => 'Ты — концепт-художник для научно-фантастических фильмов'
-]);
-```
-
-> **Важно**: Для генерации изображений промпт должен содержать глагол "нарисуй" или аналогичные команды рисования. API
-> автоматически определяет необходимость вызова функции text2image при наличии параметра `function_call: auto`.
-
-## ⚠️ Обработка ошибок
-
-SDK предоставляет специализированные исключения для различных типов ошибок:
+Исключения:
 
 ```php
 <?php
@@ -544,9 +408,9 @@ try {
 }
 ```
 
-### Коды ошибок GigaChat API
+### Коды ошибок
 
-#### 🔐 Ошибки авторизации (400-401)
+#### Авторизация (400-401)
 
 | Код | HTTP | Описание                                          | Решение                                                                        |
 |-----|------|---------------------------------------------------|--------------------------------------------------------------------------------|
@@ -574,7 +438,7 @@ try {
 }
 ```
 
-#### 💳 Ошибки лимитов и доступа (402-403)
+#### Лимиты (402-403)
 
 | HTTP | Описание            | Причина                   | Решение                                                                       |
 |------|---------------------|---------------------------|-------------------------------------------------------------------------------|
@@ -598,7 +462,7 @@ try {
 }
 ```
 
-#### 📊 Ошибки размера данных (413)
+#### Размер данных (413)
 
 | HTTP | Описание            | Причина                        | Решение                             |
 |------|---------------------|--------------------------------|-------------------------------------|
@@ -615,7 +479,7 @@ try {
 }
 ```
 
-#### ⚙️ Ошибки параметров (422)
+#### Параметры (422)
 
 | HTTP | Описание                                     | Причина                         | Решение                                         |
 |------|----------------------------------------------|---------------------------------|-------------------------------------------------|
@@ -643,7 +507,7 @@ try {
 }
 ```
 
-#### 🚦 Ошибки лимитов запросов (429)
+#### Rate Limit (429)
 
 | HTTP | Описание            | Причина                               | Решение                                       |
 |------|---------------------|---------------------------------------|-----------------------------------------------|
@@ -663,7 +527,7 @@ try {
 }
 ```
 
-#### 🔧 Серверные ошибки (500)
+#### Сервер (500)
 
 | HTTP | Описание                | Причина                 | Решение                       |
 |------|-------------------------|-------------------------|-------------------------------|
@@ -682,7 +546,7 @@ try {
 }
 ```
 
-### Универсальный обработчик ошибок
+### Retry-обработчик
 
 ```php
 <?php
@@ -740,35 +604,22 @@ try {
 }
 ```
 
-### Отладка ошибок
+### Отладка
 
 ```php
-// Включение подробного логирования ошибок
 try {
     $response = $client->chat($messages);
 } catch (GigaChatException $e) {
-    // Полная информация об ошибке
-    $errorInfo = [
+    error_log('GigaChat Error: ' . json_encode([
         'message' => $e->getMessage(),
         'code' => $e->getCode(),
-        'file' => $e->getFile(),
-        'line' => $e->getLine(),
-        'trace' => $e->getTraceAsString()
-    ];
-    
-    error_log('GigaChat Error: ' . json_encode($errorInfo, JSON_UNESCAPED_UNICODE));
-    
-    // Отправка в систему мониторинга
-    // Sentry::captureException($e);
+    ], JSON_UNESCAPED_UNICODE));
 }
 ```
 
-> 📖 **Подробнее об ошибках
-**: [Официальная документация GigaChat API](https://developers.sber.ru/docs/ru/gigachat/api/errors-description)
+См.: [Ошибки GigaChat API](https://developers.sber.ru/docs/ru/gigachat/api/errors-description)
 
-## 🛠️ Artisan команды
-
-SDK предоставляет удобные команды для работы через консоль:
+## Artisan-команды
 
 ```bash
 # Тестирование подключения к API
@@ -784,9 +635,7 @@ php artisan gigachat:chat "Расскажи историю" --model=GigaChat-Pro
 php artisan gigachat:chat "Напиши длинный рассказ" --stream
 ```
 
-## 🔒 Rate Limiting
-
-Используйте middleware для ограничения количества запросов:
+## Rate Limiting
 
 ```php
 // В routes/api.php
@@ -802,11 +651,9 @@ Route::middleware(['gigachat.rate_limit:30,1'])->group(function () {
 ],
 ```
 
-## 🧪 Тестирование
+## Тестирование
 
-Пакет включает полный набор тестов для обеспечения качества и надежности.
-
-### Запуск тестов
+### Запуск
 
 ```bash
 # Установка зависимостей для разработки
@@ -840,20 +687,20 @@ export GIGACHAT_INTEGRATION_TEST=true
 php run-tests.php --integration
 ```
 
-### Покрываемый функционал
+### Покрытие
 
-- ✅ **Генерация текста** - все методы chat и streaming
-- ✅ **Генерация изображений** - создание, скачивание, полный workflow
-- ✅ **Аутентификация** - управление токенами, обновление, кеширование
-- ✅ **Laravel интеграция** - фасады, helper методы, сервис-провайдер
-- ✅ **Валидация** - проверка входных данных, обработка ошибок
-- ✅ **Интеграционные тесты** - реальные запросы к API
+- Генерация текста (chat, streaming)
+- Генерация изображений
+- Аутентификация (токены, обновление, кеш)
+- Laravel (фасады, helpers, service provider)
+- Валидация
+- Интеграционные тесты
 
-Подробнее см. [tests/README.md](tests/README.md)
+См. [tests/README.md](tests/README.md)
 
-## 📚 Примеры использования
+## Примеры
 
-### Чат-бот для Laravel
+### Чат-бот
 
 ```php
 <?php
@@ -928,7 +775,7 @@ class ContentGenerator
 }
 ```
 
-### Streaming чат в реальном времени
+### Streaming
 
 ```php
 <?php
@@ -968,19 +815,7 @@ public function streamChat(Request $request)
 }
 ```
 
-## 🧪 Тестирование
-
-### Запуск тестов пакета
-
-```bash
-# Тестирование подключения
-php artisan gigachat:test
-
-# Тестирование с собственным сообщением
-php artisan gigachat:test "Проверка работы API"
-```
-
-### Тестирование в Laravel проекте
+### Laravel-тесты
 
 ```php
 <?php
@@ -1012,101 +847,47 @@ class GigaChatTest extends TestCase
 }
 ```
 
-## ❓ Troubleshooting и FAQ
+## FAQ
 
-### Часто задаваемые вопросы
+**Как получить Client ID и Client Secret?**  
+Зарегистрируйтесь в [Sber AI](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project) и создайте проект.
 
-**Q: Как получить Client ID и Client Secret?**
-A: Зарегистрируйтесь
-в [личном кабинете Sber AI](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project) и создайте
-проект.
+**Ошибка "Invalid token response"?**  
+Проверьте Client ID/Secret и доступность сервиса авторизации.
 
-**Q: Что делать при ошибке "Invalid token response"?**
-A: Проверьте правильность Client ID и Client Secret, а также доступность сервиса авторизации.
+**SSL-сертификаты?**  
+Установите `GIGACHAT_CERT_PATH` в путь к сертификату или `false`.
 
-**Q: Как использовать собственные SSL сертификаты?**
-A: Установите `GIGACHAT_CERT_PATH` в путь к файлу сертификата или `false` для отключения проверки.
+**Production?**  
+Да. Настройте SSL и rate limiting.
 
-**Q: Поддерживается ли работа в production?**
-A: Да, SDK готов для использования в production. Убедитесь в правильной настройке SSL и rate limiting.
+**Тарифы?**  
+[Официальная документация](https://developers.sber.ru/docs/ru/gigachat/api/tariffs)
 
-**Q: Где посмотреть информацию о тарифах?**
-A: Актуальная информация о тарифах доступна
-в [официальной документации](https://developers.sber.ru/docs/ru/gigachat/api/tariffs).
-
-### Решение проблем
-
-**Проблема**: Ошибки SSL/TLS
-
-При запросе к GigaChat API может возникать ошибка:
+### SSL-ошибки
 
 ```
-OAuth token request failed: cURL error 60: SSL certificate problem: self-signed certificate in certificate chain
+cURL error 60: SSL certificate problem
 ```
-
-**Решения:**
 
 ```bash
-# Решение 1: Отключить проверку SSL (рекомендуется для разработки)
+# Разработка
 GIGACHAT_CERT_PATH=false
 
-# Решение 2: Указать путь к сертификату (для продакшена)
+# Production
 GIGACHAT_CERT_PATH=/path/to/certificate.pem
 ```
 
-После добавления `GIGACHAT_CERT_PATH=false` в файл `.env` очистите кэш конфигурации:
+Очистите кэш после изменений:
 
 ```bash
 php artisan config:clear
 php artisan config:cache
 ```
 
-**Проблема**: Токен истекает слишком быстро
+## Полная конфигурация
 
-```php
-// SDK автоматически обновляет токены, проверьте системное время
-// и правильность настроек Client ID/Secret
-```
-
-**Проблема**: Rate limiting ошибки
-
-```php
-// Настройте лимиты в config/gigachat.php
-'rate_limit' => [
-    'max_attempts' => 30,    // Уменьшите количество запросов
-    'decay_minutes' => 1,    // Или увеличьте период
-],
-```
-
-### Отладка
-
-Включите отладку для получения подробной информации:
-
-```php
-// В Laravel - включите логирование в config/gigachat.php
-'logging' => [
-    'enabled' => true,
-    'channel' => 'daily',
-    'level' => 'debug',
-],
-
-// Логирование запросов
-use Illuminate\Support\Facades\Log;
-
-try {
-    $response = GigaChat::chat($messages);
-    Log::info('GigaChat response', ['response' => $response]);
-} catch (\Exception $e) {
-    Log::error('GigaChat error', [
-        'message' => $e->getMessage(),
-        'trace' => $e->getTraceAsString()
-    ]);
-}
-```
-
-## 🛡️ Конфигурация
-
-Полный список настроек в `config/gigachat.php`:
+`config/gigachat.php`:
 
 ```php
 <?php
@@ -1156,142 +937,57 @@ return [
 ];
 ```
 
-## ✅ Требования
-
-- **PHP**: 8.2 или выше
-- **Laravel**: 8+ (включая Laravel 11 и 12)
-- **Guzzle HTTP**: 7.8.2+
-- **Действующие учетные данные** Sber GigaChat API
-
-## 📄 Лицензия
-
-Этот проект лицензирован под лицензией MIT. Подробности см. в файле [LICENSE](LICENSE).
-
-## 🔗 Полезные ссылки
-
-### Официальная документация GigaChat
-
-- 📝 **Регистрация и получение Client ID
-  **: [Создание проекта](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
-- 🚀 **Начало работы с API**: [Быстрый старт](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-using-api)
-- 📖 **Документация API
-  **: [Справочник по API](https://developers.sber.ru/docs/ru/gigachat/api/reference/rest/gigachat-api)
-- 🤖 **Список актуальных моделей**: [Описание моделей](https://developers.sber.ru/docs/ru/gigachat/models)
-- 💰 **Тарифы и оплата**: [Тарифные планы](https://developers.sber.ru/docs/ru/gigachat/api/tariffs)
-
-## 🤝 Поддержка
-
-- 📧 **Email**: [создайте issue](https://github.com/tigusigalpa/gigachat-php/issues)
-- 📖 **Документация**: [Sber GigaChat API](https://developers.sber.ru/docs/ru/gigachat/api/overview)
-- 🐛 **Баг-репорты**: [GitHub Issues](https://github.com/tigusigalpa/gigachat-php/issues)
-- 💬 **Обсуждения**: [GitHub Discussions](https://github.com/tigusigalpa/gigachat-php/discussions)
-
-## 🧑‍💻 Участие в разработке
-
-Мы приветствуем вклад в развитие проекта! Пожалуйста:
-
-1. **Форкните** репозиторий
-2. **Создайте ветку** для новой функции (`git checkout -b feature/amazing-feature`)
-3. **Зафиксируйте изменения** (`git commit -m 'Add amazing feature'`)
-4. **Отправьте в ветку** (`git push origin feature/amazing-feature`)
-5. **Откройте Pull Request**
-
-### Правила разработки
-
-- Следуйте стандартам PSR-12
-- Добавляйте тесты для новой функциональности
-- Обновляйте документацию
-- Используйте понятные commit сообщения
-
-## 🛡️ Безопасность
-
-Если вы обнаружили уязвимость безопасности, пожалуйста, отправьте email на sovletig@gmail.com вместо создания публичного
-issue.
-
-## 🆕 Laravel 12 Support
-
-SDK полностью совместим с Laravel 12! Все возможности работают без изменений:
-
-- ✅ Service Provider автоматически регистрируется
-- ✅ Facade `GigaChat` доступен из коробки
-- ✅ Artisan команды `gigachat:test` и `gigachat:chat`
-- ✅ Middleware `gigachat.rate_limit`
-- ✅ Trait `HasGigaChat` для моделей
-
-## 📈 Roadmap
-
-- [ ] Кэширование ответов
-- [ ] Метрики и аналитика
-- [ ] WebSocket поддержка
-- [ ] Интеграция с другими PHP фреймворками
-
----
-
-**Сделано с ❤️ для сообщества PHP разработчиков**
-
-> 💡 **Совет**: Начните с простых примеров и постепенно изучайте более продвинутые возможности SDK. Документация GigaChat
-> API: https://developers.sber.ru/docs/ru/gigachat/api/overview
-
-```php
-use Tigusigalpa\GigaChat\Laravel\GigaChat;
-
-$messages = [
-['role' => 'user', 'content' => 'Привет! Сгенерируй ответ.'],
-];
-
-$response = GigaChat::chat($messages, [
-'model' => 'GigaChat',
-'temperature' => 0.3,
-]);
-
-echo $response['choices'][0]['message']['content'] ?? '';
-
-```
-
-### Потоковая генерация (SSE)
-
-```php
-GigaChat::chatStream($messages, ['model' => 'GigaChat'], function ($event, $error) {
-    if ($event === '[DONE]') {
-        return; // завершение потока
-    }
-    $delta = $event['choices'][0]['delta']['content'] ?? '';
-    echo $delta;
-});
-```
-
-## Использование вне Laravel
-
-```php
-use Tigusigalpa\GigaChat\Auth\TokenManager;
-use Tigusigalpa\GigaChat\GigaChatClient;
-
-$authKey = base64_encode('CLIENT_ID:CLIENT_SECRET');
-$tm = new TokenManager($authKey, 'GIGACHAT_API_PERS');
-$client = new GigaChatClient($tm);
-
-$messages = [
-    ['role' => 'user', 'content' => 'Hello!'],
-];
-$response = $client->chat($messages);
-```
-
-## Примечания по авторизации
-
-- Для получения токена доступа отправляйте запрос `POST https://ngw.devices.sberbank.ru:9443/api/v2/oauth` c заголовками
-  `Content-Type: application/x-www-form-urlencoded`, `Accept: application/json`,
-  `Authorization: Basic Base64(ClientID:ClientSecret)` и обязательным заголовком `RqUID` (uuid4). В теле указывается
-  `scope=GIGACHAT_API_PERS|GIGACHAT_API_B2B|GIGACHAT_API_CORP`.
-- Токен действует ~30 минут, SDK обновляет его автоматически при необходимости.
-- Если среда требует явный сертификат, задайте `GIGACHAT_CERT_PATH` на путь к цепочке сертификатов NGW (или оставьте
-  `verify=true` для системного хранилища).
-
 ## Требования
 
-- PHP >= 7.4
-- guzzlehttp/guzzle ^7.8
-- Laravel 8+ (опционально)
+- PHP 8.2+
+- Laravel 8+ (включая 11, 12)
+- Guzzle HTTP 7.8.2+
+- Учетные данные GigaChat API
 
 ## Лицензия
 
-MIT
+MIT. См. [LICENSE](LICENSE).
+
+## Ссылки
+
+- [Создание проекта](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-create-project)
+- [Быстрый старт](https://developers.sber.ru/docs/ru/gigachat/quickstart/ind-using-api)
+- [Справочник API](https://developers.sber.ru/docs/ru/gigachat/api/reference/rest/gigachat-api)
+- [Модели](https://developers.sber.ru/docs/ru/gigachat/models)
+- [Тарифы](https://developers.sber.ru/docs/ru/gigachat/api/tariffs)
+
+## Поддержка
+
+- [GitHub Issues](https://github.com/tigusigalpa/gigachat-php/issues)
+- [GitHub Discussions](https://github.com/tigusigalpa/gigachat-php/discussions)
+- [Документация API](https://developers.sber.ru/docs/ru/gigachat/api/overview)
+
+## Участие
+
+1. Форкните репозиторий
+2. Создайте ветку (`git checkout -b feature/name`)
+3. Зафиксируйте изменения (`git commit -m 'Add feature'`)
+4. Отправьте (`git push origin feature/name`)
+5. Откройте Pull Request
+
+Следуйте PSR-12, добавляйте тесты, обновляйте документацию.
+
+## Безопасность
+
+Уязвимости отправляйте на sovletig@gmail.com (не в публичные issues).
+
+## Laravel 12
+
+Полная совместимость:
+- Service Provider авторегистрация
+- `GigaChat` Facade
+- Artisan-команды
+- Rate limit middleware
+- `HasGigaChat` trait
+
+## Roadmap
+
+- [ ] Кэширование
+- [ ] Метрики
+- [ ] WebSocket
+- [ ] Другие PHP-фреймворки
