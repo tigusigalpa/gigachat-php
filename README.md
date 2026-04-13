@@ -17,7 +17,7 @@ PHP SDK для Sber GigaChat API с поддержкой Laravel. Streaming и �
 - Интеграция с GigaChat API
 - Управление OAuth-токенами (автообновление)
 - Все модели GigaChat (GigaChat, GigaChat-Pro, GigaChat-Max)
-- Laravel 8-12 (Service Provider, Facades)
+- Laravel 8-13 (Service Provider, Facades)
 - Диалоги и одиночные запросы
 - Streaming-ответы
 - Генерация изображений через text2image
